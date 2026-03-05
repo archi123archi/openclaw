@@ -1,5 +1,5 @@
 import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
-import type { PollInput } from "openclaw/plugin-sdk/matrix";
+import type { PollInput } from "openclaw/plugin-sdk";
 import { getMatrixRuntime } from "../runtime.js";
 import { buildPollStartContent, M_POLL_START } from "./poll-types.js";
 import { enqueueSend } from "./send-queue.js";
@@ -47,12 +47,11 @@ export async function sendMessageMatrix(
     client: opts.client,
     timeoutMs: opts.timeoutMs,
     accountId: opts.accountId,
-    cfg: opts.cfg,
   });
-  const cfg = opts.cfg ?? getCore().config.loadConfig();
   try {
     const roomId = await resolveMatrixRoomId(client, to);
     return await enqueueSend(roomId, async () => {
+      const cfg = getCore().config.loadConfig();
       const tableMode = getCore().channel.text.resolveMarkdownTableMode({
         cfg,
         channel: "matrix",
@@ -82,7 +81,7 @@ export async function sendMessageMatrix(
 
       let lastMessageId = "";
       if (opts.mediaUrl) {
-        const maxBytes = resolveMediaMaxBytes(opts.accountId, cfg);
+        const maxBytes = resolveMediaMaxBytes(opts.accountId);
         const media = await getCore().media.loadWebMedia(opts.mediaUrl, maxBytes);
         const uploaded = await uploadMediaMaybeEncrypted(client, roomId, media.buffer, {
           contentType: media.contentType,
@@ -172,7 +171,6 @@ export async function sendPollMatrix(
     client: opts.client,
     timeoutMs: opts.timeoutMs,
     accountId: opts.accountId,
-    cfg: opts.cfg,
   });
 
   try {

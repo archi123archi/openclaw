@@ -1,4 +1,4 @@
-import { loadOutboundMediaFromUrl, type OpenClawConfig } from "openclaw/plugin-sdk/mattermost";
+import { loadOutboundMediaFromUrl } from "openclaw/plugin-sdk";
 import { getMattermostRuntime } from "../runtime.js";
 import { resolveMattermostAccount } from "./accounts.js";
 import {
@@ -13,7 +13,6 @@ import {
 } from "./client.js";
 
 export type MattermostSendOpts = {
-  cfg?: OpenClawConfig;
   botToken?: string;
   baseUrl?: string;
   accountId?: string;
@@ -147,7 +146,7 @@ export async function sendMessageMattermost(
 ): Promise<MattermostSendResult> {
   const core = getCore();
   const logger = core.logging.getChildLogger({ module: "mattermost" });
-  const cfg = opts.cfg ?? core.config.loadConfig();
+  const cfg = core.config.loadConfig();
   const account = resolveMattermostAccount({
     cfg,
     accountId: opts.accountId,

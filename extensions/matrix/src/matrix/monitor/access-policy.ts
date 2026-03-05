@@ -3,7 +3,7 @@ import {
   issuePairingChallenge,
   readStoreAllowFromForDmPolicy,
   resolveDmGroupAccessWithLists,
-} from "openclaw/plugin-sdk/matrix";
+} from "openclaw/plugin-sdk";
 import {
   normalizeMatrixAllowList,
   resolveMatrixAllowListMatch,
