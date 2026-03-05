@@ -1,0 +1,202 @@
+{
+  "updatedAt": "2026-03-05T11:41:49.377Z",
+  "createdAt": "2026-03-05T10:55:17.205Z",
+  "id": "jkn3GQHp1sElucco",
+  "name": "Untitled-1772667459045",
+  "description": null,
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "multipleMethods": false,
+        "httpMethod": "POST",
+        "path": "/zenkid/build",
+        "authentication": "none",
+        "responseMode": "onReceived",
+        "contentTypeNotice": "",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        -96
+      ],
+      "id": "6fd1a606-9c8d-4317-9483-7b32afeebdea",
+      "name": "Webhook",
+      "webhookId": "f4741609-4d49-4b24-8b5e-7a1c975b4bfc"
+    },
+    {
+      "parameters": {
+        "executeOnce": true,
+        "command": "python C:\\Users\\armin\\zenkid-ai\\run_agent.py"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        224,
+        -96
+      ],
+      "id": "22f38b0e-8705-4ef0-a0dc-4d38d908b779",
+      "name": "Execute Command"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "df812f5f-c0ec-4d09-9c38-aecd2c00b937",
+              "leftValue": "build_success==",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": false,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        448,
+        -96
+      ],
+      "id": "83f04789-b3e6-418f-ba72-9efac7083025",
+      "name": "If",
+      "disabled": false
+    },
+    {
+      "parameters": {
+        "executeOnce": true,
+        "command": "ssh racunovo@server \"cd api.racunovodstvo-arm.ba && git pull && touch tmp/restart.txt\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        672,
+        -96
+      ],
+      "id": "b8da6829-dd39-482b-afd2-f52f2cb62a4a",
+      "name": "Execute Command1"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Execute Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Command": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Execute Command1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "9b21a1b0-851d-4ab1-9dae-e3be541a1af3",
+  "activeVersionId": null,
+  "versionCounter": 5,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2026-03-05T10:55:17.209Z",
+      "createdAt": "2026-03-05T10:55:17.209Z",
+      "role": "workflow:owner",
+      "workflowId": "jkn3GQHp1sElucco",
+      "projectId": "oAjzn6Zjf2OopJ1N",
+      "project": {
+        "updatedAt": "2026-03-04T23:42:56.787Z",
+        "createdAt": "2026-03-04T23:42:56.787Z",
+        "id": "oAjzn6Zjf2OopJ1N",
+        "name": "Unnamed Project",
+        "type": "personal",
+        "icon": null,
+        "description": null,
+        "creatorId": "baa824d3-3289-4a07-86ed-b761d1cf2164",
+        "projectRelations": [
+          {
+            "updatedAt": "2026-03-04T23:42:56.787Z",
+            "createdAt": "2026-03-04T23:42:56.787Z",
+            "userId": "baa824d3-3289-4a07-86ed-b761d1cf2164",
+            "projectId": "oAjzn6Zjf2OopJ1N",
+            "user": {
+              "updatedAt": "2026-03-05T11:30:09.000Z",
+              "createdAt": "2026-03-04T23:42:56.157Z",
+              "id": "baa824d3-3289-4a07-86ed-b761d1cf2164",
+              "email": null,
+              "firstName": null,
+              "lastName": null,
+              "personalizationAnswers": null,
+              "settings": {
+                "userActivated": false
+              },
+              "disabled": false,
+              "mfaEnabled": false,
+              "lastActiveAt": "2026-03-05",
+              "isPending": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "tags": [],
+  "parentFolder": null,
+  "activeVersion": null,
+  "scopes": [
+    "workflow:create",
+    "workflow:delete",
+    "workflow:execute",
+    "workflow:execute-chat",
+    "workflow:list",
+    "workflow:move",
+    "workflow:publish",
+    "workflow:read",
+    "workflow:share",
+    "workflow:update"
+  ],
+  "checksum": "053cd201815dafc0cfc039e5dca9a16f96e798d79fe307f7aad65ba2dee01746"
+}
