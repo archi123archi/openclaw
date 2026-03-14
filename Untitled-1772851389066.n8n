@@ -1,0 +1,45 @@
+{
+  "updatedAt": "2026-03-07T02:46:38.748Z",
+  "createdAt": "2026-03-07T02:46:38.748Z",
+  "id": "CLZlkk3Gwf4sVRb8",
+  "name": "Untitled-1772851389066",
+  "description": null,
+  "active": false,
+  "isArchived": false,
+  "nodes": [],
+  "connections": {},
+  "settings": {
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "8c64c2d9-2a9d-4842-94b1-097434bc8848",
+  "activeVersionId": null,
+  "versionCounter": 1,
+  "triggerCount": 0,
+  "tags": [],
+  "parentFolder": null,
+  "activeVersion": null,
+  "homeProject": {
+    "id": "CuFvAEOemnEQstGv",
+    "type": "personal",
+    "name": "Unnamed Project",
+    "icon": null
+  },
+  "sharedWithProjects": [],
+  "usedCredentials": [],
+  "scopes": [
+    "workflow:create",
+    "workflow:delete",
+    "workflow:execute",
+    "workflow:execute-chat",
+    "workflow:list",
+    "workflow:move",
+    "workflow:publish",
+    "workflow:read",
+    "workflow:share",
+    "workflow:update"
+  ],
+  "checksum": "5c9979cb23288679de362613e786e192cb9b5494a8ca6c40552a433635fa15bb"
+}
